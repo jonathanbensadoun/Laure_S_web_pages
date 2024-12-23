@@ -124,7 +124,7 @@ export default function Conseils() {
         <h1 className="text-3xl sm:text-4xl font-bold mb-4">
           Conseils Pratiques
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-400">
           Des recommandations pour prendre soin de votre santé au quotidien
         </p>
       </motion.div>

@@ -27,7 +27,7 @@ export function AdviceSection({ title, items }: AdviceSectionProps) {
           <ul className="space-y-3">
             {item.content.map((point, pointIndex) => (
               <li key={pointIndex} className="flex items-start">
-                <span className="text-primary mr-2">•</span>
+                <span className="text-black mr-2">•</span>
                 <span className="text-gray-600">{point}</span>
               </li>
             ))}

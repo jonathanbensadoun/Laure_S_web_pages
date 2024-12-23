@@ -102,7 +102,7 @@ export default function Consultation() {
                         key={itemIndex}
                         className="flex items-start text-gray-600"
                       >
-                        <span className="text-primary mr-2">•</span>
+                        <span className="text-black mr-2">•</span>
                         <span>{item}</span>
                       </li>
                     ))}

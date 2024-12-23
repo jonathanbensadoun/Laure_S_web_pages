@@ -80,10 +80,10 @@ export function MapSection() {
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Card className="p-6 h-full">
+            <Card className="flex justify-center items-center p-4 h-full">
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <MapPin className="w-6 h-6 text-primary mt-1" />
+                  <MapPin className="w-10 h-10 text-primary mt-1" />
                   <div>
                     <h3 className="font-semibold mb-2">Adresse</h3>
                     <p className="text-gray-600">
