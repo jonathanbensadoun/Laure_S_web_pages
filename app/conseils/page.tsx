@@ -130,7 +130,7 @@ export default function Conseils() {
       </motion.div>
 
       <Tabs defaultValue="etirements" className="w-full">
-        <TabsList className="w-full flex flex-wrap justify-center gap-2 mb-8">
+        <TabsList className="w-full h-full flex flex-wrap justify-center gap-2 mb-8">
           {Object.entries(conseils).map(([key, { title }]) => (
             <TabsTrigger key={key} value={key} className="px-4 py-2">
               {title}

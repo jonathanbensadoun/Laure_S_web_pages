@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,23 +9,32 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-import { CookieConsent, defaultConsent, saveCookieConsent } from './cookie-settings';
+} from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  getCookieConsent,
+  saveCookieConsent,
+  defaultConsent,
+} from "./cookie-settings";
 
 export function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
-  const [consent, setConsent] = useState<CookieConsent>(defaultConsent);
+  const [consent, setConsent] = useState(defaultConsent);
 
   useEffect(() => {
-    const hasConsent = localStorage.getItem('cookie-consent');
-    if (!hasConsent) {
-      setShowBanner(true);
-    }
+    // Petit délai pour éviter le flash de la bannière au chargement
+    const timer = setTimeout(() => {
+      const savedConsent = getCookieConsent();
+      if (!savedConsent) {
+        setShowBanner(true);
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleAcceptAll = () => {
-    const fullConsent: CookieConsent = {
+    const fullConsent = {
       necessary: true,
       analytics: true,
       marketing: true,
@@ -47,41 +56,47 @@ export function CookieBanner() {
         <CardHeader>
           <CardTitle>Paramètres des cookies</CardTitle>
           <CardDescription>
-            Nous utilisons des cookies pour améliorer votre expérience sur notre site.
+            Nous utilisons des cookies pour améliorer votre expérience sur notre
+            site.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="necessary" 
-              checked={consent.necessary} 
-              disabled 
-            />
-            <label htmlFor="necessary" className="text-sm">
+            <Checkbox id="necessary" checked={consent.necessary} disabled />
+            <label
+              htmlFor="necessary"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
               Cookies nécessaires (obligatoires)
             </label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="analytics" 
+            <Checkbox
+              id="analytics"
               checked={consent.analytics}
-              onCheckedChange={(checked) => 
-                setConsent(prev => ({ ...prev, analytics: checked === true }))
+              onCheckedChange={(checked) =>
+                setConsent((prev) => ({ ...prev, analytics: checked === true }))
               }
             />
-            <label htmlFor="analytics" className="text-sm">
+            <label
+              htmlFor="analytics"
+              className="text-sm font-medium leading-none"
+            >
               Cookies analytiques
             </label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="marketing" 
+            <Checkbox
+              id="marketing"
               checked={consent.marketing}
-              onCheckedChange={(checked) => 
-                setConsent(prev => ({ ...prev, marketing: checked === true }))
+              onCheckedChange={(checked) =>
+                setConsent((prev) => ({ ...prev, marketing: checked === true }))
               }
             />
-            <label htmlFor="marketing" className="text-sm">
+            <label
+              htmlFor="marketing"
+              className="text-sm font-medium leading-none"
+            >
               Cookies marketing
             </label>
           </div>
@@ -90,9 +105,7 @@ export function CookieBanner() {
           <Button variant="outline" onClick={handleSavePreferences}>
             Enregistrer les préférences
           </Button>
-          <Button onClick={handleAcceptAll}>
-            Tout accepter
-          </Button>
+          <Button onClick={handleAcceptAll}>Tout accepter</Button>
         </CardFooter>
       </Card>
     </div>
