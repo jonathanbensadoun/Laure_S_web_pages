@@ -5,8 +5,14 @@ import { useInView } from "react-intersection-observer";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AdviceSection } from "@/components/conseils/advice-section";
+import { StretchingSection } from "@/components/conseils/stretching-section";
 
 const conseils = {
+  etirements: {
+    title: "Étirements",
+    description:
+      "Afin de maintenir votre dos en bonne santé, voici quelques étirements utiles mis à votre disposition. Il est conseillé de les pratiquer au moins 2 fois par semaine, entre 30 secondes et 1 minute pour chaque position.",
+  },
   quotidien: {
     title: "Conseils du Quotidien",
     items: [
@@ -123,7 +129,7 @@ export default function Conseils() {
         </p>
       </motion.div>
 
-      <Tabs defaultValue="quotidien" className="w-full">
+      <Tabs defaultValue="etirements" className="w-full">
         <TabsList className="w-full flex flex-wrap justify-center gap-2 mb-8">
           {Object.entries(conseils).map(([key, { title }]) => (
             <TabsTrigger key={key} value={key} className="px-4 py-2">
@@ -132,11 +138,19 @@ export default function Conseils() {
           ))}
         </TabsList>
 
-        {Object.entries(conseils).map(([key, { title, items }]) => (
-          <TabsContent key={key} value={key}>
-            <AdviceSection title={title} items={items} />
-          </TabsContent>
-        ))}
+        <TabsContent value="etirements">
+          <StretchingSection description={conseils.etirements.description} />
+        </TabsContent>
+
+        {Object.entries(conseils)
+          .filter(([key]) => key !== "etirements")
+          .map(([key, value]) => (
+            <TabsContent key={key} value={key}>
+              {"items" in value ? (
+                <AdviceSection title={value.title} items={value.items} />
+              ) : null}
+            </TabsContent>
+          ))}
       </Tabs>
     </div>
   );
