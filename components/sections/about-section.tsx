@@ -85,7 +85,7 @@ export function AboutSection() {
               asChild
               className="w-full sm:w-auto hover:scale-105 transition-transform"
             >
-              <Link href="/about">En savoir plus</Link>
+              <Link href="/faq">En savoir plus</Link>
             </Button>
           </motion.div>
           <motion.div
