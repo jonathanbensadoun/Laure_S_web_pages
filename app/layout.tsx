@@ -11,8 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Laure Sautier | Ostéopathe",
+
   description:
-    "Cabinet d'ostéopathie de Laure Sautier - Soins personnalisés et approche holistique",
+    "Cabinet d'ostéopathie de Laure Sautier - Soins personnalisés et approche holistique"
 };
 
 export default function RootLayout({
