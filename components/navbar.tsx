@@ -15,6 +15,7 @@ const navigation = [
   { name: "Pilates", href: "/pilates" },
   { name: "Réservation", href: "/reservation" },
   { name: "Conseils", href: "/conseils" },
+  { name: "Auriculothérapie", href: "/auriculotherapie" },
 ];
 
 export function Navbar() {
@@ -52,7 +53,7 @@ export function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -67,7 +68,7 @@ export function Navbar() {
             </Button>
           </div>
 
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none"
@@ -83,7 +84,7 @@ export function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
+      <div className={`lg:hidden ${isOpen ? "block" : "hidden"}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-md shadow-lg">
           {navigation.map((item) => (
             <Link
