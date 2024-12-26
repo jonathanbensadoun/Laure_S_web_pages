@@ -39,9 +39,10 @@ export function IntroSection() {
           </div>
           <div className="relative h-[200px] md:h-full min-h-[200px]">
             <Image
-              src="/cabinet.png"
+              src="/auriculothérapie.png"
               alt="Auriculothérapie"
-              fill
+              width={1024}
+              height={1024}
               className="object-cover rounded-lg"
             />
           </div>
